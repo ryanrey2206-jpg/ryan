@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Girl?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background-image: url('https://www.transparenttextures.com/patterns/strawberries.png');
+      background-color: #fff0f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      color: #ff4d88;
+      font-size: 3em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px #fff;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff6699;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #ffffff;
+      color: #ff6699;
+      border: 2px solid #ff6699;
+      position: absolute;
+    }
+
+    /* Envelope and Love Letter */
+    .envelope-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .envelope {
+      width: 200px;
+      height: 100px;
+      background: #fff;
+      border: 2px solid #ff6699;
+      position: relative;
+      transform: rotate(0);
+      animation: openEnvelope 1s forwards;
+    }
+
+    .envelope:before, .envelope:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+
+    .envelope:before {
+      top: -50px;
+      left: 0;
+      border-width: 50px 100px 0 100px;
+      border-color: #ff6699 transparent transparent transparent;
+    }
+
+    .love-letter {
+      margin-top: 20px;
+      max-width: 300px;
+      padding: 20px;
+      background: #fff0f5;
+      border: 2px solid #ff6699;
+      border-radius: 10px;
+      color: #cc3366;
+      font-size: 1.1em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in forwards;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes openEnvelope {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will you be my girl, ayawa? 🍓</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn" style="left: 50%; top: 60%;">No</button>
+  </div>
+
+  <div class="envelope-container" id="envelopeContainer">
+    <div class="envelope"></div>
+    <div class="love-letter" id="loveLetter">
+      Dear ayawa, <br><br>
+      You've filled my heart with strawberries and sunshine. 💕<br>
+      I want to walk through every season with you by my side. <br><br>
+      Will you make me the happiest person alive?<br><br>
+      Love, <br>
+      Your secret admirer 🍓
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const envelopeContainer = document.getElementById("envelopeContainer");
+    const loveLetter = document.getElementById("loveLetter");
+
+    // Move No button on click
+    noBtn.addEventListener("click", () => {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    });
+
+    // Show envelope and letter on Yes click
+    yesBtn.addEventListener("click", () => {
+      envelopeContainer.style.display = "flex";
+
+      // Delay showing love letter
+      setTimeout(() => {
+        loveLetter.style.display = "block";
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
